@@ -196,10 +196,10 @@ ListenAddress 0.0.0.0
 PermitRootLogin no
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
-PasswordAuthentication no
+PasswordAuthentication yes
 PermitEmptyPasswords no
 ChallengeResponseAuthentication no
-KbdInteractiveAuthentication no
+KbdInteractiveAuthentication yes
 UsePAM yes
 
 HostbasedAuthentication no
