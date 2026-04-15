@@ -215,7 +215,7 @@ ClientAliveInterval 300
 ClientAliveCountMax 2
 X11Forwarding no
 AllowAgentForwarding yes
-AllowTcpForwarding no
+AllowTcpForwarding yes
 PermitTunnel no
 PermitUserEnvironment no
 GatewayPorts no
