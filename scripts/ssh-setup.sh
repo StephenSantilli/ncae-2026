@@ -214,8 +214,8 @@ LoginGraceTime 30
 ClientAliveInterval 300
 ClientAliveCountMax 2
 X11Forwarding no
-AllowAgentForwarding yes
-AllowTcpForwarding yes
+AllowAgentForwarding no
+AllowTcpForwarding no
 PermitTunnel no
 PermitUserEnvironment no
 GatewayPorts no
