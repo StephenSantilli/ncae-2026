@@ -17,11 +17,35 @@ Then, to make and run the script:
 ```
 vi ssh.sh
 chmod +x ssh.sh
-sudo ssh.sh
+sudo ./ssh.sh
 ```
 
 ## [health.sh](/scripts/health.sh)
 Quick script to give a health check on a machine. Also provides further commands for investigation.
 
-## [ssh-mikrotik.rsc](/scripts/ssh-mikrotik.rsc)
-MikroTik SSH setup script. Simply adds our team keys to the `blueteam` user.
+## [harden.sh](/scripts/harden.sh)
+Hardens a machine.
+
+## [mikrotik-setup.rsc](/scripts/mikrotik-setup.rsc)
+Sets up the entire router, except for the initial interface/address config.
+
+Do this first:
+```
+/user add name=blueteam group=full password="abc123"
+/user disable admin
+
+/interface print
+# add both interfaces to ip address
+/ip address add
+# add default route
+/ip route add dst-address=0.0.0.0/0 gateway=10.9.0.1 comment="default route"
+# Then check if the correct routes got added
+/ip route print
+```
+
+Also make sure to set the variables in the script.
+
+# Apps
+
+## PassBoard
+https://github.com/stephensantilli/passboard hosted at https://passboard.isclub.syr.edu

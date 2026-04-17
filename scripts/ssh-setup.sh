@@ -3,7 +3,6 @@
 # Modified SSH setup script by Christopher Reed from CedarvilleCyber - https://github.com/CedarvilleCyber/Cyber-Games/blob/main/scripts/01_ssh_lockdown.sh
 #
 # SELF-CONTAINED SSH Lockdown — paste into Proxmox console, no files needed.
-# Usage: sudo bash (then paste), or: echo '<base64>' | base64 -d | sudo bash
 #
 
 set -euo pipefail
@@ -196,10 +195,10 @@ ListenAddress 0.0.0.0
 PermitRootLogin no
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
-PasswordAuthentication yes
+PasswordAuthentication no
 PermitEmptyPasswords no
 ChallengeResponseAuthentication no
-KbdInteractiveAuthentication yes
+KbdInteractiveAuthentication no
 UsePAM yes
 
 HostbasedAuthentication no
