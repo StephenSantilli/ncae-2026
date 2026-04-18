@@ -5,7 +5,7 @@ set -euo pipefail
 # =========================
 # CONFIG
 # =========================
-DNS_SERVER="172.20.0.20"                    # CHANGE FOR COMP: DNS server IP/hostname
+DNS_SERVER="192.168.12.5"                    # CHANGE FOR COMP: DNS server IP/hostname
 SERVICE_NAME="named"                        # CHANGE FOR COMP: service name (named or bind9)
 BACKUP_DIR="$HOME/backupscripts/backups"    # CHANGE FOR COMP: local backup directory
 
