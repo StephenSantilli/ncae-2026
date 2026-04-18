@@ -233,18 +233,19 @@ Notes:
 
 Purpose:
 
-- Conservative host firewall for Linux systems using `nftables`
+- Conservative host firewall helper for Linux systems using `ufw`
 - Detects currently listening ports and builds allow rules around those
-- Defaults to preview mode so you can inspect the generated policy before enforcing it
+- Defaults to preview mode so you can inspect the generated `ufw` commands before enforcing them
+- Avoids switching to default-deny unless you explicitly ask for it
 
-This script is useful, but you should treat it as a policy generator, not an oracle.
+This script is meant to be general and low-drama. By default it preserves service availability first and only does stricter blocking if you set `LOCKDOWN=yes`.
 
 Before you run it:
 
-1. Confirm the team subnet and competition subnet.
-2. Confirm whether SSH from the competition subnet is required.
-3. Confirm any scoring services that are not currently listening yet.
-4. Confirm whether the box is already managed by `ufw`, `firewalld`, or custom `nftables`.
+1. Confirm any scoring services that are not currently listening yet.
+2. Decide whether rules should allow from anywhere or only from specific CIDRs.
+3. Confirm whether the box is already managed by `firewalld`.
+4. Keep console access open if you plan to use `LOCKDOWN=yes`.
 
 Download:
 
@@ -256,32 +257,33 @@ chmod +x team_firewall.sh
 Preview first:
 
 ```bash
-sudo TEAM_SUBNET=10.9.5.0/24 COMP_SUBNET=10.9.3.0/24 ./team_firewall.sh
+sudo ./team_firewall.sh
 ```
 
 Apply after review:
 
 ```bash
-sudo TEAM_SUBNET=10.9.5.0/24 COMP_SUBNET=10.9.3.0/24 APPLY=yes ./team_firewall.sh
+sudo APPLY=yes ./team_firewall.sh
 ```
 
 Useful options:
 
 ```bash
-sudo APPLY=yes ALLOW_SSH_FROM_COMP=yes ./team_firewall.sh
-sudo APPLY=yes BACKUP_BOX_IP=10.9.5.50 ./team_firewall.sh
+sudo APPLY=yes ALLOW_FROM_CIDRS="10.9.5.0/24 10.9.3.0/24" ./team_firewall.sh
 sudo APPLY=yes REQUIRED_TCP_PORTS="25 110 143 993 995" ./team_firewall.sh
 sudo APPLY=yes REQUIRED_UDP_PORTS="123 161" ./team_firewall.sh
 sudo APPLY=yes EXTRA_TCP_PORTS="25 110 143 993 995 3389" ./team_firewall.sh
 sudo APPLY=yes EXTRA_UDP_PORTS="123 161 500 4500" ./team_firewall.sh
+sudo APPLY=yes LOCKDOWN=yes REQUIRED_TCP_PORTS="22 80 443" ./team_firewall.sh
 ```
 
 My advice:
 
 - Always preview.
-- Prefer `REQUIRED_TCP_PORTS` and `REQUIRED_UDP_PORTS` for known scoring ports that must stay reachable even if the service is not listening yet.
-- If a service matters for scoring, explicitly add it with `EXTRA_TCP_PORTS` or `EXTRA_UDP_PORTS` rather than trusting auto-detection alone.
-- Keep a console session open while applying firewall changes.
+- Use `REQUIRED_TCP_PORTS` and `REQUIRED_UDP_PORTS` for known scoring ports that must stay reachable even if the service is not listening yet.
+- If you want low risk, apply it without `LOCKDOWN=yes` first so UFW becomes your rule manager without immediately flipping the host to default-deny.
+- Only use `LOCKDOWN=yes` after you have confirmed the service list and access paths you actually need.
+- Keep a console session open while applying stricter firewall changes.
 
 ## Router Script
 
