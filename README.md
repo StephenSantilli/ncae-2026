@@ -1,5 +1,7 @@
 # Syracuse University's NCAE Invitational 2026 Scripts
 
+For the operator-focused playbook with download commands and usage order, see [scripts/README.md](scripts/README.md).
+
 ## [ssh-setup.sh](/scripts/ssh-setup.sh)
 SSH setup script adapted from CedarvilleCyber - https://github.com/CedarvilleCyber/Cyber-Games/blob/main/scripts/01_ssh_lockdown.sh.
 
@@ -23,8 +25,8 @@ sudo ./ssh.sh
 ## [health.sh](/scripts/health.sh)
 Quick script to give a health check on a machine. Also provides further commands for investigation.
 
-## [harden.sh](/scripts/harden.sh)
-Hardens a machine.
+## [audit.sh](/scripts/audit.sh)
+Audits and lightly hardens a machine. Start here before using more aggressive scripts.
 
 ## [mikrotik-setup.rsc](/scripts/mikrotik-setup.rsc)
 Sets up the entire router, except for the initial interface/address config.
