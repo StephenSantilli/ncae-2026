@@ -60,6 +60,27 @@ have() {
   command -v "$1" >/dev/null 2>&1
 }
 
+service_is_active() {
+  systemctl is-active "$1" >/dev/null 2>&1
+}
+
+dump_service_debug() {
+  local svc="$1"
+  warn "Service ${svc} is not active"
+  systemctl status "$svc" --no-pager -l 2>&1 | tee -a "$LOG" || true
+  journalctl -u "$svc" -n 60 --no-pager 2>&1 | tee -a "$LOG" || true
+}
+
+require_active_service() {
+  local svc="$1"
+  if service_is_active "$svc"; then
+    return 0
+  fi
+  dump_service_debug "$svc"
+  echo "[!] Required service ${svc} failed to start; see $LOG" >&2
+  exit 1
+}
+
 require_root() {
   if [[ "$(id -u)" -ne 0 ]]; then
     echo "[!] Run as root"
@@ -306,6 +327,7 @@ EOF2
   log "fail2ban ignoreip: ${F2B_IGNOREIP}"
   systemctl enable --now fail2ban
   sleep 2
+  require_active_service fail2ban
   fail2ban-client status | tee -a "$LOG" || true
 }
 
@@ -488,6 +510,7 @@ AUDIT_EOF
   fi
   systemctl enable --now auditd
   sleep 2
+  require_active_service auditd
   auditctl -s | tee -a "$LOG" || true
 }
 
