@@ -11,7 +11,7 @@ set -euo pipefail
 # EMBEDDED DATA — no external files required
 # ============================================================================
 
-SCORING_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCcM4aDj8Y4COv+f8bd2WsrIynlbRGgDj2+q9aBeW1Umj5euxnO1vWsjfkpKnyE/ORsI6gkkME9ojAzNAPquWMh2YG+n11FB1iZl2S6yuZB7dkVQZSKpVYwRvZv2RnYDQdcVnX9oWMiGrBWEAi4jxcYykz8nunaO2SxjEwzuKdW8lnnh2BvOO9RkzmSXIIdPYgSf8bFFC7XFMfRrlMXlsxbG3u/NaFjirfvcXKexz06L6qYUzob8IBPsKGaRjO+vEdg6B4lH1lMk1JQ4GtGOJH6zePfB6Gf7rp31261VRfkpbpaDAznTzh7bgpq78E7SenatNbezLDaGq3Zra3j53u7XaSVipkW0S3YcXczhte2J9kvo6u6s094vrcQfB9YigH4KhXpCErFk08NkYAEJDdqFqXIjvzsro+2/EW1KKB9aNPSSM9EZzhYc+cBAl4+ohmEPej1m15vcpw3k+kpo1NC2rwEXIFxmvTme1A2oIZZBpgzUqfmvSPwLXF0EyfN9Lk= SCORING KEY DO NOT REMOVE"
+SCORING_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGp0F9yqt711YLB5mraAxKNBI5kT1Y8/p1v0zp5UZSr Scoring"
 
 # ============================================================================
 # TEAM SSH KEYS — Add your team member keys here
@@ -27,6 +27,7 @@ TEAM_KEYS=(
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEUwIR1bKaaBqkInrlJQScngmMetLpFKlhjXBWnF3Npi Terry"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAKe1dqPrh1GrtXRYnX3Db5iU0h+Zozb74OsNlS9pBDu Siddharth"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhKOl5a+tFVypJlhdVXpUS1uo8m+vJ0bqPlvcPVNUGT Belizaire"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGp0F9yqt711YLB5mraAxKNBI5kT1Y8/p1v0zp5UZSr Scoring"
 )
 
 SCORING_USERS=(
