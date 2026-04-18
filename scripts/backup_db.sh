@@ -5,7 +5,7 @@ set -euo pipefail
 # =========================
 # CONFIG
 # =========================
-DB_SERVER="172.20.0.7"                     # CHANGE FOR COMP: DB server IP/hostname
+DB_SERVER="192.168.12.7"                     # CHANGE FOR COMP: DB server IP/hostname
 DB_NAME="ncae"                            # CHANGE FOR COMP: PostgreSQL database name
 BACKUP_DIR="$HOME/backupscripts/backups"  # CHANGE FOR COMP: where backups should be stored
 
