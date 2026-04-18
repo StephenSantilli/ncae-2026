@@ -5,7 +5,7 @@ set -euo pipefail
 # CHANGE THESE AT COMP START
 # ==========================================
 REMOTE_USER="blueteam"
-REMOTE_HOST="172.20.0.5"
+REMOTE_HOST="192.168.12.5"
 BACKUP_NAME="web"
 # ==========================================
 
