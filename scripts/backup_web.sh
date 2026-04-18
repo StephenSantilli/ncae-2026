@@ -41,6 +41,7 @@ lock_snapshot() {
         sudo chattr -R +i "$dir" || warn "Could not set immutable flag"
     fi
 }
+
 main() {
     require_cmd ssh
     require_cmd rsync
